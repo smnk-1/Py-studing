@@ -19,16 +19,16 @@ class BloomFilter:  # если элемент был добавлен, он до
         self.hash_functions = [HashFunction() for _ in range(0, self.k)]
         self.bit_array = [0]*m
 
-    def get_hash(self, string):
+    def _get_hash(self, string):
         return [(f.execute(string)) % self.m for f in self.hash_functions]
 
     def add(self, string):
-        hashes = self.get_hash(string)
+        hashes = self._get_hash(string)
         for bit in hashes:
             self.bit_array[bit] = 1
 
     def check(self, string):
-        checking_hash = self.get_hash(string)
+        checking_hash = self._get_hash(string)
         for bit in checking_hash:
             if self.bit_array[bit] == 0:
                 return False
