@@ -38,12 +38,12 @@ class BloomFilter:  # если элемент был добавлен, он до
         if self.m == bloom_filter.m and self.k == bloom_filter.k:
             new_bit_array =[]
             for i in range(0, self.m):
-                new_bit_array[i] = max(self.bit_array[i], bloom_filter.bit_array[i]) # to do: optimize
+                new_bit_array[i] = self.bit_array[i] or bloom_filter.bit_array[i]
             self.bit_array = new_bit_array
 
     def intersect_filters(self, bloom_filter):
         if self.m == bloom_filter.m and self.k == bloom_filter.k:
             new_bit_array =[]
             for i in range(0, self.m):
-                new_bit_array[i] = min(self.bit_array[i], bloom_filter.bit_array[i]) # to do: optimize
+                new_bit_array[i] = self.bit_array[i] and bloom_filter.bit_array[i]
             self.bit_array = new_bit_array
