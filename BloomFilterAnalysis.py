@@ -45,7 +45,7 @@ print(df)
 plt.figure(figsize=(10, 6))
 for m in m_values:
     subset = df[df["m"] == m]
-    plt.plot(subset["k"], subset["res"], marker='o', label=f"n = {m}")
+    plt.plot(subset["k"], subset["res"], marker='o', label=f"m = {m}")
 
 plt.xlabel("Число хеш-функций (k)")
 plt.ylabel("Эмпирическая вероятность ложноположительного срабатывания")
