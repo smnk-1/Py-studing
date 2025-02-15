@@ -3,7 +3,7 @@ from random import randint
 
 class HashFunction:
     def __init__(self):
-        self.r = randint(1, 100)
+        self.r = randint(1, 100) # значения r могут пересекаться, можно исправить используя set в конструкторе фильтра, вынести отсюда генерацию
 
     def execute(self, s):
         value = 0
@@ -33,3 +33,17 @@ class BloomFilter:  # если элемент был добавлен, он до
             if self.bit_array[bit] == 0:
                 return False
         return True
+
+    def unite_filters(self, bloom_filter):
+        if self.m == bloom_filter.m and self.k == bloom_filter.k:
+            new_bit_array =[]
+            for i in range(0, self.m):
+                new_bit_array[i] = max(self.bit_array[i], bloom_filter.bit_array[i]) # to do: optimize
+            self.bit_array = new_bit_array
+
+    def intersect_filters(self, bloom_filter):
+        if self.m == bloom_filter.m and self.k == bloom_filter.k:
+            new_bit_array =[]
+            for i in range(0, self.m):
+                new_bit_array[i] = min(self.bit_array[i], bloom_filter.bit_array[i]) # to do: optimize
+            self.bit_array = new_bit_array

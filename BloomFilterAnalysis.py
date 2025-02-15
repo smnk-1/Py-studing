@@ -40,7 +40,7 @@ for m in m_values:
         results.append({'m': m, 'k': k, 'res': res})
 df = pd.DataFrame(results)
 print("Результаты экспериментов:")
-print(df)
+print(df) # нормальную табличку вывода значений на экран
 
 plt.figure(figsize=(10, 6))
 for m in m_values:
