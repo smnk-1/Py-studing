@@ -39,8 +39,14 @@ for m in m_values:
         res = experiment(m, k, times, items_n)
         results.append({'m': m, 'k': k, 'res': res})
 df = pd.DataFrame(results)
-print("Результаты экспериментов:")
-print(df) # нормальную табличку вывода значений на экран
+
+fig, ax = plt.subplots(figsize=(7, 7))
+ax.axis('tight')
+ax.axis('off')
+
+ax.table(cellText=df.values, colLabels=df.columns, loc='center', cellLoc='center', colColours=['#f5f5f5']*len(df.columns))
+
+plt.show()
 
 plt.figure(figsize=(10, 6))
 for m in m_values:

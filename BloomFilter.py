@@ -18,7 +18,7 @@ class BloomFilter:  # если элемент был добавлен, он до
         self.k = k
         self.seeds = set()
         while len(self.seeds) < k:
-            self.seeds.add(str(randint(2, 100)))
+            self.seeds.add(randint(2, 100))
         self.hash_functions = [HashFunction(list(self.seeds)[i]) for i in range(0, self.k)]
         self.bit_array = [0]*m
 
