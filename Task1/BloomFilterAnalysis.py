@@ -45,7 +45,6 @@ ax.axis('tight')
 ax.axis('off')
 
 ax.table(cellText=df.values, colLabels=df.columns, loc='center', cellLoc='center', colColours=['#f5f5f5']*len(df.columns))
-
 plt.show()
 
 plt.figure(figsize=(10, 6))
@@ -58,6 +57,6 @@ plt.ylabel("Эмпирическая вероятность ложнополож
 plt.title("Зависимость вероятности от числа хеш-функций для различных m (m фиксировано)")
 plt.legend()
 plt.grid(True)
-plt.savefig('Images/Empirical_probability_of_a_false_positive.png')
+plt.savefig('../Images/Empirical_probability_of_a_false_positive.png')
 plt.show()
 plt.close()
