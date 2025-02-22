@@ -31,7 +31,7 @@ class BloomCountFilter:
             self.count_array[bit] += 1
 
     def check(self, string):
-        checking_hash = self._get_hash(string)
+        checking_hash = self._get_hash(string) # может выдавать неправильно, если определенное число накидывает в бины больше 1
         for bit in checking_hash:
             if self.count_array[bit] == 0:
                 return False
