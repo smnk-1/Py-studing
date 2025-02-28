@@ -1,15 +1,12 @@
+import mmh3
 from random import randint
-
-
-def hash_with_seed(seed):
-    return lambda value: seed*hash(value)
 
 
 def get_seeds(n):
     seeds = set()
     while len(seeds) < n:
-        seeds.add(randint(-9999, 9999))
-    return seeds
+        seeds.add(randint(1, 10000))
+    return list(seeds)
 
 
 def compare(signature1, signature2):
@@ -19,14 +16,11 @@ def compare(signature1, signature2):
 
 class MinHashAlgorithm:
     def __init__(self, k):
-        self.k = k
-        self.hash_funcs = [hash_with_seed(seed) for seed in get_seeds(k)]
+        self.seeds = get_seeds(k)
 
     def execute(self, array):
         signature = []
-        for h in self.hash_funcs:
-            hash_res = []
-            for element in array:
-                hash_res.append(h(element))
-            signature.append(min(hash_res))
+        for seed in self.seeds:
+            hash_values = [mmh3.hash(x, seed=seed) for x in array]
+            signature.append(min(hash_values))
         return signature
