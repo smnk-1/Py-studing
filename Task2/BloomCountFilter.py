@@ -23,7 +23,10 @@ class BloomCountFilter:
         self.count_array = [0]*m
 
     def _get_hash(self, string):
-        return [(f.execute(string)) % self.m for f in self.hash_functions]
+        hashes = [0]*self.m
+        for f in self.hash_functions:
+            hashes[(f.execute(string)) % self.m] += 1
+        return hashes
 
     def add(self, string):
         hashes = self._get_hash(string)
