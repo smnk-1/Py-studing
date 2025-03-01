@@ -27,13 +27,13 @@ class BloomCountFilter:
 
     def add(self, string):
         hashes = self._get_hash(string)
-        for bit in hashes:
-            self.count_array[bit] += 1
+        for i in range(0, self.m):
+            self.count_array[i] += hashes[i]
 
     def check(self, string):
-        checking_hash = self._get_hash(string) # может выдавать неправильно, если определенное число накидывает в бины больше 1
-        for bit in checking_hash:
-            if self.count_array[bit] == 0:
+        checking_hash = self._get_hash(string)
+        for i in range(0, self.m):
+            if self.count_array[i] < checking_hash[i]:
                 return False
         return True
 
