@@ -1,24 +1,22 @@
 import mmh3
-from matplotlib.pyplot import close
 
-def count_leading_zeros(string):
+def count_leading_zeros(bits):
     count = 0
-    for i in range(0, len(string)):
-        if string[i] == '1':
+    for bit in bits:
+        if bit == '1':
             break
-        else:
-            count += 1
+        count += 1
     return count
 
 class HyperLogLog:
     def __init__(self, b):
         self.b = b
-        self.buckets = [0]*2**b
-        print(len(self.buckets))
+        self.m = 2 ** b
+        self.buckets = [0] * self.m
 
-
-    def proceed_element(self, string):
-        hash_value = bin(mmh3.hash(string, signed=False))
-        bucket_index = int(hash_value[2:self.b+2:], 2)
-        leading_zeros = count_leading_zeros(hash_value[self.b+2::])
+    def proceed_element(self, element):
+        hash_value = format(mmh3.hash(element, signed=False), '032b')
+        bucket_index = int(hash_value[:self.b], 2)
+        remaining = hash_value[self.b:]
+        leading_zeros = count_leading_zeros(remaining) + 1
         self.buckets[bucket_index] = max(self.buckets[bucket_index], leading_zeros)
