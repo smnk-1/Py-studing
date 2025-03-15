@@ -19,7 +19,7 @@ class HyperLogLog:
         hash_value = format(mmh3.hash(element, signed=False), '032b')
         bucket_index = int(hash_value[:self.b], 2)
         remaining = hash_value[self.b:]
-        leading_zeros = count_leading_zeros(remaining) + 1
+        leading_zeros = count_leading_zeros(remaining)
         self.buckets[bucket_index] = max(self.buckets[bucket_index], leading_zeros)
 
     def estimate_cardinality(self):
