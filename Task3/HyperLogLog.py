@@ -31,7 +31,7 @@ class HyperLogLog:
         # 1. Вычисляем константу alpha_m
         alpha_m = 0.7213 / (1 + 1.079 / self.m)
 
-        # 2. Считаем сумму Z = Σ(2^(-M[i]))
+        # 2. Считаем сумму Z = sum(2^(-M[i]))
         Z = sum(2 ** (-r) for r in self.buckets)
 
         # 3. Вычисляем "сырую" оценку по формуле HyperLogLog:
