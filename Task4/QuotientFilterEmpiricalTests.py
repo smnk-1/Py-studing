@@ -48,7 +48,7 @@ def empirical_test():
     plt.ylabel('False Positive Rate', fontsize=12)
     plt.title('False Positive Rate vs. Inserted Items (Quotient Filter)', fontsize=14)
     plt.legend()
-    plt.savefig('../QF_EmpiricalTests.png', dpi=300)
+    plt.savefig('../Images/QF_EmpiricalTests.png', dpi=300)
     plt.show()
 
 
